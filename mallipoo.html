@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mallipoo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #0b0b0b 0%, #1a1a1a 60%, #000000 100%);
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      overflow-x: hidden;
+      color: #ffd700;
+    }
+
+    .screen {
+      display: none;
+      padding: 40px 20px;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1, h2 {
+      font-family: 'Great Vibes', cursive;
+      color: #ffd700;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-top: 50px;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 30px;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .btns {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      font-family: 'Playfair Display', serif;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .yes {
+      background-color: #ffd700;
+      color: #000;
+    }
+
+    .yes:hover {
+      background-color: #ffef8a;
+      box-shadow: 0 0 25px #ffd700, 0 0 40px #fff2b2;
+    }
+
+    .no {
+      background-color: #2c2c2c;
+      color: #ffd700;
+    }
+
+    .no:hover {
+      background-color: #444;
+      box-shadow: 0 0 25px #ffd70033;
+    }
+
+    .bouquet {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      font-size: 5em;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: all 0.6s ease-in-out;
+      z-index: 10;
+      filter: drop-shadow(0 0 20px #ffd700aa);
+    }
+
+    .bouquet.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    #confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 20px;
+      opacity: 0.8;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    #finalMessage {
+      font-size: 1.8em;
+      color: #fff8dc;
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    #finalMessage.show {
+      opacity: 1;
+    }
+
+    @media (min-width: 600px) {
+      .btns {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="screen active" id="intro">
+    <h1 style="text-shadow: 0 0 15px #ffd70088;">A golden evening whispers your name...</h1>
+    <div class="btns">
+      <button onclick="nextScreen('q1')">✨</button>
+    </div>
+  </div>
+
+  <div class="screen" id="q1">
+    <h2>What’s more exciting—mystery or company?
+
+    </h2>
+    <div class="btns">
+      <button onclick="nextScreen('q2')">Mystery</button>
+      <button onclick="nextScreen('q2')">The right company</button>
+    </div>
+  </div>
+
+  <div class="screen" id="q2">
+    <h2>If magic had a time and place... would you go?</h2>
+    <div class="btns">
+      <button onclick="nextScreen('q3')">Absolutely</button>
+      <button onclick="nextScreen('q3')">Only if you're leading the way</button>
+    </div>
+  </div>
+
+  <div class="screen" id="q3">
+    <h2>Have you ever felt like a moment was written just for you?</h2>
+    <div class="btns">
+      <button onclick="nextScreen('pause')">Absolutely</button>
+      <button onclick="nextScreen('pause')">Probably this one?</button>
+    </div>
+  </div>
+
+  <div class="screen" id="pause">
+    <h2>"The night awaits an answer..."</h2>
+    <div style="margin-top: 20px; font-size: 2em;">⏳</div>
+    <div class="btns" style="margin-top: 40px;">
+      <button onclick="nextScreen('final')">Let's Go</button>
+    </div>
+  </div>
+
+  <div class="screen" id="final">
+    <h1>Chethana...<br>Would you do me the honour of going with me to the masquerade? 🎭</h1>
+    <div class="btns">
+      <button class="yes" onclick="respond(true)">Absolutely, yes!</button>
+      <button class="no" onclick="respond(false)">Yesss!</button>
+    </div>
+    <div id="finalMessage"></div>
+    <div class="bouquet" id="bouquet">💐</div>
+    <div id="confetti"></div>
+  </div>
+
+  <script>
+    function nextScreen(id) {
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function respond(answer) {
+      const bouquet = document.getElementById("bouquet");
+      const message = document.getElementById("finalMessage");
+      bouquet.classList.add("show");
+      message.textContent = "A fairytale awaits you, princess  ✨";
+      message.classList.add("show");
+      startConfetti();
+
+      setTimeout(() => {
+        bouquet.classList.remove("show");
+      }, 5000);
+    }
+
+    function startConfetti() {
+      const confettiContainer = document.getElementById("confetti");
+      const colors = ["#ffd700", "#ffcc00", "#f1c40f", "#e2b007"];
+      let count = 0;
+      const maxConfetti = 120;
+
+      const interval = setInterval(() => {
+        if (count >= maxConfetti) {
+          clearInterval(interval);
+          return;
+        }
+
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti-piece");
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confettiContainer.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+        count++;
+      }, 35);
+    }
+  </script>
+</body>
+</html>
