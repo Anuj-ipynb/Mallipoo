@@ -124,14 +124,8 @@
     }
 
     @keyframes confettiFall {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
     #finalMessage {
@@ -156,40 +150,38 @@
 </head>
 <body>
   <div class="screen active" id="intro">
-    <h1 style="text-shadow: 0 0 15px #ffd70088;">A golden evening whispers your name...</h1>
+    <h1 style="text-shadow: 0 0 15px #ffd70088;">Clumsiness taking a sharp turn?..</h1>
     <div class="btns">
       <button onclick="nextScreen('q1')">✨</button>
     </div>
   </div>
 
   <div class="screen" id="q1">
-    <h2>What’s more exciting—mystery or company?
-
-    </h2>
+    <h2>Pick your energy for today:</h2>
     <div class="btns">
-      <button onclick="nextScreen('q2')">Mystery</button>
-      <button onclick="nextScreen('q2')">The right company</button>
+      <button onclick="nextScreen('q2')">Golden retriever with eyeliner</button>
+      <button onclick="nextScreen('q2')">Silent chaos in lip gloss</button>
     </div>
   </div>
 
   <div class="screen" id="q2">
-    <h2>If magic had a time and place... would you go?</h2>
+    <h2>What would you like better — real flowers or handmade ones?</h2>
     <div class="btns">
-      <button onclick="nextScreen('q3')">Absolutely</button>
-      <button onclick="nextScreen('q3')">Only if you're leading the way</button>
+      <button onclick="nextScreen('q3')">Mallipoo onlyy</button>
+      <button onclick="nextScreen('q3')">Both</button>
     </div>
   </div>
 
   <div class="screen" id="q3">
-    <h2>Have you ever felt like a moment was written just for you?</h2>
+    <h2>Whats better?</h2>
     <div class="btns">
-      <button onclick="nextScreen('pause')">Absolutely</button>
-      <button onclick="nextScreen('pause')">Probably this one?</button>
+      <button onclick="nextScreen('pause')">Whiskey in a jazz club</button>
+      <button onclick="nextScreen('pause')">Being knee deep in ice cream</button>
     </div>
   </div>
 
   <div class="screen" id="pause">
-    <h2>"The night awaits an answer..."</h2>
+    <h2>"A question for the birthday girl..."</h2>
     <div style="margin-top: 20px; font-size: 2em;">⏳</div>
     <div class="btns" style="margin-top: 40px;">
       <button onclick="nextScreen('final')">Let's Go</button>
@@ -197,7 +189,7 @@
   </div>
 
   <div class="screen" id="final">
-    <h1>Chethana...<br>Would you do me the honour of going with me to the masquerade? 🎭</h1>
+    <h1>Eepyy...<br>Would you do me the honour of joining me to the masquerade?</h1>
     <div class="btns">
       <button class="yes" onclick="respond(true)">Absolutely, yes!</button>
       <button class="no" onclick="respond(false)">Yesss!</button>
@@ -217,7 +209,7 @@
       const bouquet = document.getElementById("bouquet");
       const message = document.getElementById("finalMessage");
       bouquet.classList.add("show");
-      message.textContent = "A fairytale awaits you, princess  ✨";
+      message.textContent = "A fairytale awaits, princess ✨";
       message.classList.add("show");
       startConfetti();
 
